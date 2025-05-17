@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AdaptAi</title>
+
+<link rel="stylesheet" href="styles.css">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+
+
+</head>
+<body class="bg-[#E2EFE7]">
+
+
+
+  
+<nav id="navbar" class="fixed text-white w-full z-50 transition-all duration-300">
+  <!-- Add a wrapper with background and blur support -->
+  <div id="navbar-inner" class="transition-all duration-300">
+    <div class="mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <!-- Logo -->
+        <div class="flex items-center">
+          <img src="./images/logo.png" alt="Logo" class="h-12 w-12" />
+          <span class="font-bold text-xl md:text-3xl ml-2 md:text-[#32615a]">
+            Adapt <span class="text-[#D7CE32]">Ai</span>
+          </span>
+        </div>
+
+        <!-- Desktop Nav Links -->
+        <div class="hidden md:flex space-x-6">
+          <a href="#" class="md:text-[#32615a] text-[#32615a] hover:text-[#C1B507] font-semibold font-semibold">Home</a>
+          <a href="#" class="md:text-[#32615a] text-[#32615a] hover:text-[#C1B507] font-semibold font-semibold">About</a>
+          <a href="#" class="md:text-[#32615a] text-[#32615a] hover:text-[#C1B507] font-semibold font-semibold">Services</a>
+          <a href="#" class="md:text-[#32615a] text-[#32615a] hover:text-[#C1B507] font-semibold font-semibold">Contact</a>
+        </div>
+
+        <!-- Desktop CTA Button -->
+        <div class="hidden md:block">
+          <button class="bg-[#D7CE32] text-black font-semibold px-4 py-2 rounded hover:bg-[#c1b507] transition">
+            Get Started
+          </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden flex items-center">
+          <button onclick="toggleMenu()" aria-label="Toggle Menu">
+            <svg class="w-7 h-7 text-[#D7CE32]" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown -->
+  <div id="mobile-menu"
+       class="hidden md:hidden absolute top-16 left-0 w-full px-4 py-6 bg-white/50 backdrop-blur-2xl text-white transition-all duration-300 ease-in-out z-40">
+    <div class="space-y-4 text-center">
+      <a href="#" class="block text-lg font-medium text-[#1b3431] hover:text-[#C1B507] ">Home</a>
+      <a href="#" class="block text-lg font-medium text-[#1b3431] hover:text-[#C1B507] ">About</a>
+      <a href="#" class="block text-lg font-medium text-[#1b3431] hover:text-[#C1B507] ">Services</a>
+      <a href="#" class="block text-lg font-medium text-[#1b3431] hover:text-[#C1B507] ">Contact</a>
+      <button class="w-full bg-[#C1B507] text-black px-4 py-2 rounded hover:bg-[#b4a40e] font-semibold transition mt-2">
+        Get Started
+      </button>
+    </div>
+  </div>
+</nav>
+
+
+
+<script defer>
+function toggleMenu() {
+  const nav = document.getElementById('mobile-menu');
+  const navbarInner = document.getElementById('navbar-inner');
+
+  const isHidden = nav.classList.contains('hidden');
+  nav.classList.toggle('hidden');
+
+  if (isHidden) {
+    navbarInner.classList.add('backdrop-blur-2xl', 'bg-white/50');
+  } else {
+    if (window.scrollY < 10) {
+      navbarInner.classList.remove('backdrop-blur-2xl', 'bg-white/50');
+    }
+  }
+}
+
+// Scroll-based blur effect
+window.addEventListener('scroll', () => {
+  const navbarInner = document.getElementById('navbar-inner');
+  const nav = document.getElementById('mobile-menu');
+
+  if (window.scrollY > 10) {
+    navbarInner.classList.add('backdrop-blur-2xl', 'bg-white/50');
+  } else {
+    if (nav.classList.contains('hidden')) {
+      navbarInner.classList.remove('backdrop-blur-2xl', 'bg-white/50');
+    }
+  }
+});
+
+// Close mobile nav when any link is clicked
+document.addEventListener('DOMContentLoaded', () => {
+  const navLinks = document.querySelectorAll('#mobile-menu a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.add('hidden');
+
+      // Optional: remove blur if not scrolled
+      if (window.scrollY < 10) {
+        document.getElementById('navbar-inner').classList.remove('backdrop-blur-2xl', 'bg-black/50');
+      }
+    });
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+  <style>
+    .hero-bg {
+      background-image: url('./images/Hero-BG.jpg'); /* Use your own image path */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 10;
+    }
+  </style>
+
+
+
+<section id="hero" class="relative h-screen w-full">
+  <!-- Background image with dark overlay on mobile only -->
+  <div class="absolute inset-0 md:hidden">
+    <img
+      src="./images/HeroSec-Pic.png"
+      alt="AI Background"
+      class="w-full h-full object-cover opacity-90"
+    />
+    <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+  </div>
+
+   <div class="hidden md:block absolute inset-0 z-0">
+    <img
+      src="./images/Hero-BG.jpg"
+      alt="AI Background Desktop"
+      class="w-full h-full opacity-30"
+    />
+  </div>
+
+  <!-- Main content container -->
+  <div class="absolute inset-0 flex items-center justify-center">
+    <div class="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-0 items-end h-auto px-6 pb-10 pt-10">
+      
+      <!-- Left content -->
+      <div class="z-10 flex flex-col justify-start h-full text-left pt-[80px] text-white">
+        <h1 class="text-4xl lg:text-6xl font-extrabold leading-tight md:text-[#32615a]">
+          Task<br>
+          <div class="inline-flex items-center px-4 py-4 bg-green-200 text-green-800 rounded-full shadow w-max mb-4">
+            <span class="text-sm font-medium">Learn</span>
+            <svg class="w-4 h-4 mx-2 text-green-800" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm3.5 8l-5 3V7l5 3z" />
+            </svg>
+            <span class="text-sm ">AdaptAI</span>
+          </div>
+          <br /> Real <span class="pb-4 text-[#D7CE32]">Skills,</span> Real <span class="pb-4 text-[#D7CE32]">Fast</span>
+        </h1>
+
+        <p class="text-lg max-w-md mb-6 mt-2 text-white md:text-[#16A34A]">
+          AdaptAi teaches agents to complete real software tasks by watching how humans do it—simple, scalable, and smart.
+        </p>
+
+        <button class="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-green-700 transition w-max mb-6">
+          Try Now →
+        </button>
+
+        <div class=" grid grid-cols-3 gap-4 max-w-xl">
+          <div class="bg-white/80 rounded-xl p-2 md:p-12 shadow-md text-center">
+            <svg class="w-4 md:w-6 h-4 md:h-6 mx-auto text-green-600 mb-1" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zM4 20c0-2.67 5.33-4 8-4s8 1.33 8 4v1H4v-1z" />
+            </svg>
+            <h3 class="text-sm md:text-2xl font-bold text-green-800">100K</h3>
+            <p class="text-green-600 text-[8px]">Users</p>
+          </div>
+          <div class="bg-white/80 rounded-xl p-2 md:p-12 shadow-md text-center">
+            <svg class="w-4 md:w-6 h-4 md:h-6 mx-auto text-green-600 mb-1" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6 2h9a2 2 0 012 2v16l-7-3-7 3V4a2 2 0 012-2z" />
+            </svg>
+            <h3 class="text-sm md:text-2xl font-bold text-green-800">750+</h3>
+            <p class="text-green-600 text-[8px]">Documents</p>
+          </div>
+          <div class="bg-white/80 rounded-xl p-2 md:p-12 shadow-md text-center">
+            <svg class="w-4 md:w-6 h-4 md:h-6 mx-auto text-green-600 mb-1" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 4C7.03 4 3 7.58 3 12s4.03 8 9 8 9-3.58 9-8-4.03-8-9-8zm-1 13v-2h-2v-2h2v-2h2v2h2v2h-2v2h-2z" />
+            </svg>
+            <h3 class="text-sm md:text-2xl font-bold text-green-800">85%</h3>
+            <p class="text-green-600 text-[8px]">Faster Comprehension</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right image (desktop only) -->
+      <div class="hidden md:flex items-center justify-center">
+        <img src="./images/HeroSec-Pic.png" alt="AI Image" class="w-full h-auto object-contain" />
+      </div>
+    </div>
+  </div>
+</section>
+
+  
+  
+  
+
+<section class="relative w-full bg-gradient-to-b from-[#DBEAE2] to-green-100 py-20 md:pt-[400px] overflow-hidden bg-cover bg-center">
+
+
+<img src="./images/topLines.png" alt="" class="absolute top-0 w-full h-auto">
+
+  <!-- Pulsing top border animation -->
+  <div class="absolute top-0 left-0 w-full h-1 md:h-7 overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-full bg-blue-500/10"></div>
+    <div class="absolute top-0 left-0 h-full w-0 bg-gradient-to-r from-transparent via-[#D7CE32] to-transparent animate-pulseBorder"></div>
+  </div>
+  
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+    <!-- Right futuristic content (text) - on top for mobile -->
+    <div class="order-1 md:order-none text-green-800 space-y-6">
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
+        <span class="bg-gradient-to-r from-[#14532D] to-[#D7CE32] bg-clip-text text-transparent">
+          Revolutionizing AI Automation
+        </span>
+      </h2>
+      <div class="text-green-700 text-lg leading-relaxed space-y-4">
+        <p class="border-l-4 border-green-400 pl-4 italic">
+          "AI isn't just smart — it's becoming intuitive."
+        </p>
+        <p class="text-base md:text-lg">
+          At AdaptAi, we’re transforming AI by enabling computer-use agents to learn directly from human demonstrations.
+        </p>
+        <p class="text-base md:text-lg">
+          Our goal is to create AI systems that autonomously navigate software, automate workflows, and perform complex multi-step operations just like humans, scaling with efficiency and real-world applications.
+        </p>
+      </div>
+    </div>
+
+    <!-- Left futuristic card (image & content) - lower on mobile -->
+    <div class="order-2 md:order-none relative bg-[#32615A] backdrop-blur-md rounded-3xl shadow-xl p-6 md:p-10 overflow-visible">
+      <!-- Image (overflow from top) -->
+      <div class="absolute -top-[23%] md:-top-[95%] left-1/2 transform -translate-x-1/2 w-[250px] h-auto md:w-[500px] md:h-[500px] z-10">
+        <img src="./images/2ns-SectionImage.png" alt="AI Tech" class="w-full h-full object-contain" />
+      </div>
+
+      <!-- Card content -->
+      <div class="pt-40 text-center z-20">
+        <h3 class="text-xl md:text-2xl font-bold text-white mb-2">Future-Proof AI Technology</h3>
+        <p class="text-white text-sm">
+          Empowering your experience with advanced multilingual AI interaction and voice synthesis.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <style>
+@keyframes pulseBorder {
+  0% {
+    left: 0;
+    width: 0;
+    opacity: -0.3;
+  }
+  50% {
+    width: 200px;
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    width: 0;
+    opacity: -0.3;
+  }
+}
+
+.animate-pulseBorder {
+  animation: pulseBorder 3s ease-in-out infinite alternate;
+  position: absolute; /* Required for 'left' to work */
+}
+
+  </style>
+</section>
+
+<section class="relative py-24 bg-[#DCFCE7] overflow-hidden md:pt-[350px]">
+  <img 
+    src="./images/middleLines.png" 
+    alt="Background Image" 
+    class="absolute inset-0 mx-auto max-w-full h-full object-contain hidden md:block pointer-events-none z-0" 
+  >
+  <img 
+    src="./images/middleLines-mobile.png" 
+    alt="Background Image" 
+    class="absolute inset-0 mx-auto max-w-full h-full object-contain block md:hidden pointer-events-none z-0" 
+  >
+
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-4xl md:text-5xl font-extrabold text-center text-green-900 mb-16">
+      <span class="bg-gradient-to-r from-[#14532D] to-[#D7CE32] bg-clip-text text-transparent">
+        Our Core Principles
+      </span>
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+      <!-- Card 1 -->
+      <div class="flex flex-col bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-8 transition hover:scale-[1.02] hover:shadow-green-300/30 h-full">
+        <h3 class="text-xl font-bold text-green-800 mb-4 min-h-[72px]">
+          AI Beyond Text and Images
+        </h3>
+        <p class="text-green-900 text-sm leading-relaxed">
+          Unlike traditional AI that generates text or images, AdaptAi allows AI to act and automate tasks across industries—from data entry and customer support to e-commerce and research. We believe in AI as a workforce, not just a tool.
+        </p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="flex flex-col bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-8 transition hover:scale-[1.02] hover:shadow-green-300/30 h-full">
+        <h3 class="text-xl font-bold text-green-800 mb-4 min-h-[72px]">
+          Practical AI Training through Crowdsourcing
+        </h3>
+        <p class="text-green-900 text-sm leading-relaxed">
+          AdaptAi’s unique crowdsourced approach enables users to directly teach AI through real demonstrations. This hands-on training builds adaptive, practical AI systems that excel at real-world tasks, providing value in dynamic environments.
+        </p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="flex flex-col bg-white/10 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl p-8 transition hover:scale-[1.02] hover:shadow-green-300/30 h-full">
+        <h3 class="text-xl font-bold text-green-800 mb-4 min-h-[72px]">
+          Transparency and Fairness in AI Development
+        </h3>
+        <p class="text-green-900 text-sm leading-relaxed">
+          We’re breaking free from closed ecosystems. AdaptAi fosters a decentralized environment where anyone can contribute to AI training, earn rewards, and ensure the fairness of development. Our open approach guarantees transparency in how AI evolves.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="relative py-24 bg-[#DCFCE7]  !overflow-x-visible md:pt-[350px]">
+   
+  
+  <h2 class="text-4xl md:text-5xl font-extrabold text-center text-green-900 mb-16">
+      <span class="bg-gradient-to-r from-[#14532D] to-[#D7CE32] bg-clip-text text-transparent">
+        AI-WorkForce
+      </span>
+    </h2>
+  <div class="relative w-[90%] bg-[#32615A] rounded-r-3xl pl-6 pr-12 py-12 flex items-start mx-0">
+
+    <!-- Left Image -->
+ <div class="relative w-1/3 h-[300px]"> <!-- or h-screen, or any defined height -->
+  <img 
+    src="./images/AI-WorkForce.png" 
+    alt="AI Illustration" 
+    class="absolute -bottom-12 left-0 w-full object-contain"
+  >
+</div>
+
+
+    <!-- Right Text -->
+    <div class="w-2/3 h-[300px] pl-8 text-white content-center">
+      <h3 class="text-3xl md:text-4xl font-bold mb-4">
+        Scalability & Real-World Applications
+      </h3>
+      <h4 class="text-xl font-semibold mb-3">
+        Real-World AI for Businesses and Users
+      </h4>
+      <p class="text-base leading-relaxed">
+        AdaptAi is built for practical applications—scaling from enterprise automation to personal AI assistants. It seamlessly integrates with existing software and workflows, making AI a valuable resource for businesses and individuals alike.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- RoadMap Setion  -->
+<section id="roadmap" class="w-full bg-[#DCFCE7] py-20 px-4 text-gray-800">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl font-extrabold text-center text-green-800 mb-16">Roadmap 2025</h2>
+
+    <div class="relative grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+      
+      <!-- Left side: Q2/Q3 2025 -->
+      <div class="md:col-span-1 text-left md:pr-6 space-y-4">
+        <h3 class="text-2xl font-bold text-green-700">Q2 / Q3 2025</h3>
+        <ul class="space-y-2">
+          <li>• Blockchain Intelligence & Multichain Support (EVM + Solana)</li>
+          <li>• Token Analytics & Security Scanner (AI risk detection)</li>
+          <li>• Advanced Analytics & Technical Prediction</li>
+          <li>• Social Sentiment Tracking (real-time)</li>
+          <li>• Multi-Modal Interface</li>
+          <li>• Gaming Integration
+            <ul class="ml-4 list-disc text-sm text-gray-700">
+              <li>Unified Command trading (Vision, Voice, Text)</li>
+              <li>Partnerships</li>
+              <li>Adapt Staking</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Middle vertical green line -->
+      <div class=" md:flex justify-center">
+        <div class="w-5 h-full bg-green-600"></div>
+      </div>
+
+      <!-- Right side: Q3/Q4 2025 -->
+      <div class="md:col-span-1 text-left md:pl-6 space-y-4">
+        <h3 class="text-2xl font-bold text-green-700">Q3 / Q4 2025</h3>
+        <ul class="space-y-2">
+          <li>• Persona Customization</li>
+          <li>• Autonomous Features
+            <ul class="ml-4 list-disc text-sm text-gray-700">
+              <li>Adapt GPT</li>
+            </ul>
+          </li>
+          <li>• Wallet & Management
+            <ul class="ml-4 list-disc text-sm text-gray-700">
+              <li>Secure Privy Agent Wallets</li>
+              <li>Management UI</li>
+              <li>Developer Tool / Agent Marketplace & Registry</li>
+              <li>Automated Tool Integration</li>
+            </ul>
+          </li>
+          <li>• Enhanced AutoMode & On-Chain Actions</li>
+          <li>• Proactive, Adaptive Notifications</li>
+          <li>• Adapt Dapp Launch (Play Store)</li>
+        </ul>
+      </div>
+
+      <!-- Mobile version: green line on top -->
+      <div class="md:hidden flex justify-center py-8">
+        <div class="w-1 h-24 bg-green-600"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+</body>
+</html>
